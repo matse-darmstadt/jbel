@@ -9,13 +9,24 @@ public:
 	// the cheese cube: a 3d bool array
 	// nxnxn (a cube, duh!)
 	// or maybe leave dimensions optional in case of cheese slices? (i.e. 2d)
-	bool cube[][][];
+	bool cube [][][];
+	// the dimension of the cube (i.e. length of the edges)
+	char dimensions;
 private:
+	// fills the cube with cheese and air in a fixed pattern 
+	cube* RipenFixedCube();
+	// fills the cube with cheese and air in a random pattern
+	// probably not going to be used
+	cube* RipenRandomCube();
+	// lets the user decide the pattern of the cheese cube
+	// implementation/arguments unclear
+	// probably not going to be used as well
+	cube* RipenCustomCube();
 	// returns an array of 3 chars which represent coordinates
 	// we're not gonna use cubes larger than 256, are we?
 	char* GetEntryPoint(cube* cheese);
 	// returns the number of steps taken until
-	// can be used as recursive method for recursivenesses sake
+	// can be used recursively for recursiveness' sake
 	int CountPathSteps(int counter);
 	// bad pun on bouillon
 	// initiates the search of a path through the cube
@@ -26,4 +37,8 @@ private:
 	cube* GetNeighbours(char* coord);
 	// an array of coordinates (char[x][3]) that represents the path through the cube
 	char* [] WalkPath();
+	// verifies of the intended step is valid
+	bool VerifyStep(char* curr, char* next);
+	// takes a look at the neighbours at the coordinates to make sure we're not leaving the cube's boundaries
+	bool CheckBoundary(char* coord);
 };
