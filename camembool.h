@@ -22,7 +22,7 @@ private:
 	// implementation/arguments unclear
 	// probably not going to be used as well
 	cube* RipenCustomCube();
-	// returns an array of 3 chars which represent coordinates
+	// returns an array of 3 chars which represent segments
 	// we're not gonna use cubes larger than 256, are we?
 	char* GetEntryPoint(cube* cheese);
 	// returns the number of steps taken until
@@ -31,13 +31,13 @@ private:
 	// bad pun on bouillon
 	// initiates the search of a path through the cube
 	void PourBoollon(char* coord);
-	// determines what the cube below the coordinates is made off
+	// determines what the segment below the coordinates is made off
 	bool CheckPointBelow(char* coord);
 	// returns the 3x3 cube around the coordinates
 	cube* GetNeighbours(char* coord);
 	// an array of coordinates (char[x][3]) that represents the path through the cube
 	char* [] WalkPath();
-	// verifies of the intended step is valid
+	// verifies if the intended step is valid
 	bool VerifyStep(char* curr, char* next);
 	// takes a look at the neighbours at the coordinates to make sure we're not leaving the cube's boundaries
 	bool CheckBoundary(char* coord);
