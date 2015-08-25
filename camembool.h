@@ -24,4 +24,6 @@ private:
 	bool CheckPointBelow(char* coord);
 	// returns the 3x3 cube around the coordinates
 	cube* GetNeighbours(char* coord);
+	// an array of coordinates (char[x][3]) that represents the path through the cube
+	char* [] WalkPath();
 };
