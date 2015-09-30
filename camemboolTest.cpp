@@ -115,11 +115,9 @@ public:
 
 	void testCheckBoundary() {
 
-		Camembool c = createCamembool(5, [this](uchar x, uchar y, uchar z) {
-			return true;
-		});
+		Camembool c = getAllCheese(5);
 
-		char segment[] = { 2, 2, 3 };
+		uchar segment[] = { 2, 2, 3 };
 		cout << c.CheckBoundary(segment) << endl;
 	}
 
@@ -127,28 +125,27 @@ public:
 
 		Camembool c = getAllCheese(5);
 
-		char segment[] = { 0,0,0 };
+		uchar segment[] = { 0,0,0 };
 		uchar* neighbourCoords;
 		uchar numberOfNeighbours;
 		c.GetNeighbours(segment, neighbourCoords, numberOfNeighbours);
-		assertTrue(numberOfNeighbours == 0, "Test::GetNeighbours::allCheeseCube::");
+		assertTrue(numberOfNeighbours == 0, "Test::GetNeighbours::allCheeseCube");
 
-		for (uchar number = 0 ; number < numberOfNeighbours ; number++) {
-
-		}
-
+		segment = {2,0,2};
+		c = getCubeWithHoleInMiddle(5);
+		c.GetNeighbours(segment, neighbourCoords, numberOfNeighbours);
+		assertTrue(numberOfNeighbours == 1, "Test::GetNeighbours::CubeWithHoleInMiddle");
 	}
 
 	void testWalkPath() {
-		Camembool c = createCamembool(5, [](uchar x, uchar y, uchar z) {
-					return true;
-				});
+		Camembool c = getAllCheese(5);
+
 	}
 
 	void testGetEntryPoint() {
 
 		Camembool c = getAllCheese(5);
-		char* result = c.GetEntryPoint();
+		uchar* result = c.GetEntryPoint();
 		assertTrue(result == nullptr, "Test::GetEntryPoint::allCheeseCube::null");
 
 		c = getCubeWithHoleInMiddle(5);
@@ -156,21 +153,18 @@ public:
 	}
 
 	void testCountPathSteps() {
-		Camembool c = createCamembool(5, [](uchar x, uchar y, uchar z) {
-					return true;
-				});
+		Camembool c = getAllCheese(5);
+
 	}
 
 	void testCheckSegmentBelow() {
-		Camembool c = createCamembool(5, [](uchar x, uchar y, uchar z) {
-					return true;
-				});
+		Camembool c = getAllCheese(5);
+
 	}
 
 	void testVerifyStep() {
-		Camembool c = createCamembool(5, [](uchar x, uchar y, uchar z) {
-					return true;
-				});
+		Camembool c = getAllCheese(5);
+
 	}
 
 
@@ -178,9 +172,6 @@ public:
 
 int main() {
 	CamemboolTest test;
-
-    auto func = [] () { cout << "Hello world" << endl; };
-    func(); // now call the function
 
 	test.testCheckBoundary();
 
