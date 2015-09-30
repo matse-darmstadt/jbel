@@ -28,6 +28,14 @@ void assertTrue(bool testValue, string testName) {
 	testCounter++;
 }
 
+void assertEqual(bool testValue, bool expectedValue, string testName) {
+	cout << testName << ":\t" << (testValue ? "TRUE" : "FALSE") << endl;
+	if (testValue != expectedValue) {
+		testFailCounter++;
+	}
+	testCounter++;
+}
+
 
 void printTestSummary() {
 	cout << "Number of tests: " << testCounter << "\t"
@@ -117,15 +125,13 @@ public:
 
 	void testGetNeighbours() {
 
-		Camembool c = createCamembool(5, [](uchar x, uchar y, uchar z) {
-			return true;
-		});
+		Camembool c = getAllCheese(5);
 
 		char segment[] = { 0,0,0 };
 		uchar* neighbourCoords;
 		uchar numberOfNeighbours;
 		c.GetNeighbours(segment, neighbourCoords, numberOfNeighbours);
-		assertTrue(numberOfNeighbours == 0, "TestGetNeighbours");
+		assertTrue(numberOfNeighbours == 0, "Test::GetNeighbours::allCheeseCube::");
 
 		for (uchar number = 0 ; number < numberOfNeighbours ; number++) {
 
@@ -143,10 +149,10 @@ public:
 
 		Camembool c = getAllCheese(5);
 		char* result = c.GetEntryPoint();
-		assertTrue(result == nullptr, "Test_GetEntryPoint::testAllCheeseCube");
+		assertTrue(result == nullptr, "Test::GetEntryPoint::allCheeseCube::null");
 
 		c = getCubeWithHoleInMiddle(5);
-		assertTrue(c.cube[3][3][3] == AIR, "Test_GetEntryPoint::testMiddle");
+		assertTrue(c.cube[2][0][2] == AIR, "Test::GetEntryPoint::middleHoleCube::singleValidPoint");
 	}
 
 	void testCountPathSteps() {

@@ -99,7 +99,7 @@ private:
 	/*
 	 * The cubes edge length (number of fields per array dimension)
 	 */
-	char size;
+	unsigned char size;
 	
 	/*
 	 * a char pointer to a n x 3 array
@@ -108,9 +108,10 @@ private:
 	 * stores the current path through the cube
 	 * 
 	 */
-	char* path;
+	unsigned char* path;
 	
 	/*
+<<<<<<< HEAD
 	 * just a constant array size for the fixed cube
 	 * might as well be in there ...probably better anyway
 	 * 
@@ -118,6 +119,8 @@ private:
 	//const char FIXED_SIZE;
 
 	/*
+=======
+>>>>>>> 5885a95de3dc1068230ae153cc71893949f83c86
 	 * name: GetEntryPoint
 	 * looks for the NEXT air segment in the top layer (z == 0)
 	 * (remember char* path, that'll always at least hold the entry point and we can go from
@@ -128,7 +131,7 @@ private:
 	 * @return: pointer to a char array (size 3); coordinates, obviously
 	 * 
 	 */
-	char* GetEntryPoint();
+	unsigned char* GetEntryPoint();
 	
 	/*
 	 * name: CountPathSteps
@@ -140,7 +143,7 @@ private:
 	 * @return: int path.length
 	 * 
 	 */
-	int CountPathSteps();
+	unsigned int CountPathSteps();
 	
 	/*
 	 * name: CheckSegmentBelow
@@ -153,7 +156,7 @@ private:
 	 * only two choices here, true for cheese and false for air
 	 * 
 	 */
-	bool CheckSegmentBelow(char* coord);
+	bool CheckSegmentBelow(unsigned char* coord);
 	
 	/*
 	 * name: GetNeighbours
@@ -171,7 +174,7 @@ private:
 	 * pointer to the bool array
 	 * 
 	 */
-	void GetNeighbours(char* coord, unsigned char*& neighbourCoords, unsigned char& numberOfValidNeighbours);
+	void GetNeighbours(unsigned char* coord, unsigned char*& neighbourCoords, unsigned char& numberOfValidNeighbours);
 	
 	/*
 	 * name: WalkPath
@@ -196,7 +199,7 @@ private:
 	 * @return: bool validStep
 	 * true if ok, false if not
 	 */
-	bool VerifyStep(char* curr, char* next);
+	bool VerifyStep(unsigned char* curr, unsigned char* next);
 	
 	/*
 	 * name: CheckBoundary
@@ -212,5 +215,5 @@ private:
 	 * NOTE: might make more sense to know something about where the error came from (i.e. to the right, the bottom etc.)
 	 * 		 again depends on the final implementation, sorry
 	 */
-	bool CheckBoundary(char* coord);
+	bool CheckBoundary(unsigned char* coord);
 };
