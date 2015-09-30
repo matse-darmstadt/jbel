@@ -7,7 +7,7 @@
 #include "camembool.h"
 
 	Camembool::Camembool(unsigned char size){}
-	Camembool::Camembool(bool*** cube){}
+	Camembool::Camembool(bool*** cube, unsigned char size){}
 	Camembool::~Camembool(){}
 
 	void Camembool::RipenFixedCube(){}
