@@ -1,5 +1,6 @@
 class Camembool
 {
+	friend class CamemboolTest;
 public:
 	
 	
@@ -10,7 +11,7 @@ public:
 	 * 
 	 * @param: char size
 	 * The edge length of the cube (i.e. number of array fields per dimension)
-	 * unsigned char is used to limit the cube size to no more than 256³ segments
+	 * unsigned char is used to limit the cube size to no more than 255³ segments
 	 * 
 	 * default value for each segment should be false (air)
 	 * 
@@ -20,6 +21,10 @@ public:
 	 */
 	Camembool(unsigned char size);
 	
+	 /* Constructor with a given cube
+	  *
+	  */
+	Camembool(bool*** cube);
 	/*
 	 * 
 	 * Destructor of the Camembool class
@@ -63,7 +68,7 @@ public:
 	 * 
 	 * 
 	 */
-	void RipenCustomCube();
+	void RipenCustomCube(bool*** cube);
 	
 	/*
 	 * name: PourBoollon
@@ -89,7 +94,7 @@ private:
 	 * surprisingly, length in all dimensions is equal
 	 *
 	 */
-	bool cube [][][];
+	bool*** cube;
 	
 	/*
 	 * The cubes edge length (number of fields per array dimension)
