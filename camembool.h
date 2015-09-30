@@ -111,16 +111,6 @@ private:
 	unsigned char* path;
 	
 	/*
-<<<<<<< HEAD
-	 * just a constant array size for the fixed cube
-	 * might as well be in there ...probably better anyway
-	 * 
-	 */
-	//const char FIXED_SIZE;
-
-	/*
-=======
->>>>>>> 5885a95de3dc1068230ae153cc71893949f83c86
 	 * name: GetEntryPoint
 	 * looks for the NEXT air segment in the top layer (z == 0)
 	 * (remember char* path, that'll always at least hold the entry point and we can go from
