@@ -115,7 +115,7 @@ private:
 	 * might as well be in there ...probably better anyway
 	 * 
 	 */
-	const char FIXED_SIZE = 4;
+	//const char FIXED_SIZE;
 
 	/*
 	 * name: GetEntryPoint

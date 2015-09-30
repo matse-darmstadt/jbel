@@ -12,6 +12,10 @@
 using namespace std;
 typedef unsigned char uchar;
 
+
+#define CHEESE true
+#define AIR false
+
 // asserts
 int testCounter = 0;
 int testFailCounter = 0;
@@ -33,11 +37,57 @@ void printTestSummary() {
 
 class CamemboolTest {
 
+
 public:
 
-	Camembool createCamembool(unsigned char size,
+	Camembool getAllCheese(uchar size) {
 
-			function<bool(uchar x, uchar y, uchar z)> cheeseGenerator) {
+		bool*** cube = new bool**[size];
+		for (uchar x = 0; x < size; x++) {
+			cube[x] = new bool*[size];
+			for (uchar y = 0; y < size; y++) {
+				cube[x][y] = new bool[size];
+				for (uchar z = 0; z < size; z++) {
+					cube[x][y][z] = CHEESE;
+				}
+			}
+		}
+		return Camembool(cube, size);
+	}
+
+	Camembool getAllAir(uchar size) {
+
+		bool*** cube = new bool**[size];
+		for (uchar x = 0; x < size; x++) {
+			cube[x] = new bool*[size];
+			for (uchar y = 0; y < size; y++) {
+				cube[x][y] = new bool[size];
+				for (uchar z = 0; z < size; z++) {
+					cube[x][y][z] = AIR;
+				}
+			}
+		}
+		return Camembool(cube, size);
+	}
+
+	Camembool getCubeWithHoleInMiddle(uchar size) {
+		bool*** cube = new bool**[size];
+		for (uchar x = 0; x < size; x++) {
+			cube[x] = new bool*[size];
+			for (uchar y = 0; y < size; y++) {
+				cube[x][y] = new bool[size];
+				for (uchar z = 0; z < size; z++) {
+					if (x == size/2 && z == size/2)
+						cube[x][y][z] = AIR;
+					else
+						cube[x][y][z] = CHEESE;
+				}
+			}
+		}
+		return Camembool(cube, size);
+	}
+	Camembool createCamembool(unsigned char size,
+								function<bool(uchar x, uchar y, uchar z)> cheeseGenerator) {
 
 		bool*** cube = new bool**[size];
 		for (uchar z = 0; z < size; z++) {
@@ -50,14 +100,14 @@ public:
 			}
 		}
 
-		Camembool c(cube);
+		return Camembool(cube, size);
 	}
 
 
 
 	void testCheckBoundary() {
 
-		Camembool c = createCamembool(5, [](uchar x, uchar y, uchar z) {
+		Camembool c = createCamembool(5, [this](uchar x, uchar y, uchar z) {
 			return true;
 		});
 
@@ -76,6 +126,11 @@ public:
 		uchar numberOfNeighbours;
 		c.GetNeighbours(segment, neighbourCoords, numberOfNeighbours);
 		assertTrue(numberOfNeighbours == 0, "TestGetNeighbours");
+
+		for (uchar number = 0 ; number < numberOfNeighbours ; number++) {
+
+		}
+
 	}
 
 	void testWalkPath() {
@@ -85,9 +140,13 @@ public:
 	}
 
 	void testGetEntryPoint() {
-		Camembool c = createCamembool(5, [](uchar x, uchar y, uchar z) {
-					return true;
-				});
+
+		Camembool c = getAllCheese(5);
+		char* result = c.GetEntryPoint();
+		assertTrue(result == nullptr, "Test_GetEntryPoint::testAllCheeseCube");
+
+		c = getCubeWithHoleInMiddle(5);
+		assertTrue(c.cube[3][3][3] == AIR, "Test_GetEntryPoint::testMiddle");
 	}
 
 	void testCountPathSteps() {
@@ -114,9 +173,14 @@ public:
 int main() {
 	CamemboolTest test;
 
+    auto func = [] () { cout << "Hello world" << endl; };
+    func(); // now call the function
+
 	test.testCheckBoundary();
 
 	test.testGetNeighbours();
+
+	test.testGetEntryPoint();
 
 	printTestSummary();
 }
