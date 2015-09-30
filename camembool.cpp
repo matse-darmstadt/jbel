@@ -28,15 +28,20 @@ unsigned char* Camembool::GetEntryPoint() {
 	unsigned char x, z;
 	x = 0;
 	z = 0;
-	while (x != size || z != size)
+	while (z != size)
 	{
-		if (cube[x++][0][z++] == false)
+		if (cube[x][0][z] == false)
 		{
 			unsigned char* segment = new unsigned char[3];
 			segment[0] = x;
 			segment[1] = 0;
 			segment[2] = z;
 			return segment;
+		}
+		if (++x == size)
+		{
+			z++;
+			x = 0;
 		}
 	}
 	return nullptr;
@@ -51,6 +56,7 @@ bool Camembool::CheckSegmentBelow(unsigned char* coord) {
 }
 void Camembool::GetNeighbours(unsigned char* coord, unsigned char*& neighbourCoords,
 		unsigned char& numberOfValidNeighbours) {
+
 }
 bool Camembool::WalkPath() {
 	return true;

@@ -75,7 +75,18 @@ public:
 		uchar* neighbourCoords;
 		uchar numberOfNeighbours;
 		c.GetNeighbours(segment, neighbourCoords, numberOfNeighbours);
+<<<<<<< Updated upstream
 		assertTrue(numberOfNeighbours == 0, "TestGetNeighbours");
+=======
+		assertTrue(numberOfNeighbours == 0, "Test::GetNeighbours::allCheeseCube");
+
+		segment[0] = 2;
+		segment[1] = 0;
+		segment[2] = 2;
+		c = getCubeWithHoleInMiddle(5);
+		c.GetNeighbours(segment, neighbourCoords, numberOfNeighbours);
+		assertTrue(numberOfNeighbours == 1, "Test::GetNeighbours::CubeWithHoleInMiddle");
+>>>>>>> Stashed changes
 	}
 
 	void testWalkPath() {
