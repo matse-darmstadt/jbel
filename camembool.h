@@ -171,7 +171,7 @@ private:
 	 * pointer to the bool array
 	 * 
 	 */
-	bool* GetNeighbours(char* coord);
+	void GetNeighbours(char* coord, unsigned char*& neighbourCoords, unsigned char& numberOfValidNeighbours);
 	
 	/*
 	 * name: WalkPath
