@@ -24,7 +24,7 @@ public:
 	 /* Constructor with a given cube
 	  *
 	  */
-	Camembool(bool*** cube);
+	Camembool(bool*** cube, unsigned char size);
 	/*
 	 * 
 	 * Destructor of the Camembool class
