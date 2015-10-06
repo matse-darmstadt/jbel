@@ -134,6 +134,7 @@ public:
 		segment[0] = 2;
 		segment[1] = 0;
 		segment[2] = 2;
+
 		c = getCubeWithHoleInMiddle(5);
 		c.GetNeighbours(segment, neighbourCoords, numberOfNeighbours);
 		assertTrue(numberOfNeighbours == 1, "Test::GetNeighbours::CubeWithHoleInMiddle");
